@@ -12,7 +12,6 @@ initialise_data <- function() {
   print("Initialising the ais data.")
   
   ais_data <<- data.frame(ais)
-  ais_data
 }
 
 determine_column_missing_values <- function(data) {
@@ -34,6 +33,7 @@ determine_column_missing_values <- function(data) {
 }
 
 create_sports_table <- function(data) {
+  print("Create the table which holds the number of males and females for each sport.")
   # Create new data frame to hold the extracted information.
   sport_data <- initialise_empty_table()
   # Find all sports in the ais data frame.
@@ -54,10 +54,12 @@ create_sports_table <- function(data) {
   }
   # Change the names of the columns of the new sport table.
   colnames(sport_data) <- c("sport", "females", "males")
+  print(sport_data)
   return(sport_data)
 }
 
 initialise_empty_table <- function() {
+  print("Initialise empty table.")
   # Initialise an empty table to hold the sports table.
   df <- data.frame(sport=character(),
                   female=numeric(), 
@@ -66,10 +68,24 @@ initialise_empty_table <- function() {
   return(df)
 }
 
-find_imbalanced_sports <- functions(data) {
+find_imbalanced_sports <- function(data, balance_factor) {
+  print(paste("Finding inbalanced sports by a factor of", balance_factor, sep = " "))
   
+  # Iterate through every sport and find an imbalance in both males and females.
+  for(i in 1:nrow(data)) {
+    sport_name <- data[i, "sport"]
+    females <- data[i, "females"]
+    males <- data[i, "males"]
+
+    if (females >= balance_factor*males) {
+      print(paste("Women to power!", sport_name, ":", females, "-", males, "ratio:", sep = " "))
+    } else if(males >= balance_factor*females) {
+      print(paste("Men to power!", sport_name, ":", females, "-", males, sep = " "))
+    }
+  }
 }
 
 initialise_data()
-determine_column_missing_values(ais_data)
-create_sports_table(data = ais_data)
+determine_column_missing_values(data = ais_data)
+sports_data <- create_sports_table(data = ais_data)
+find_imbalanced_sports(data = sports_data, balance_factor = 2)
