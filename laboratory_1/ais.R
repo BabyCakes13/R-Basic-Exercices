@@ -9,13 +9,18 @@ initialise_data <- function() {
   # Install the DAAG package in order to access the ais data set.
   # install.packages('DAAG')
   library('DAAG')
+  print("Initialising the ais data.")
+  
   ais_data <<- data.frame(ais)
   ais_data
 }
 
 determine_column_missing_values <- function(data) {
+  print("Displaying information about the set.")
   # Print information about the set.
   str(data)
+  
+  print("Displaying all columns which have inexistend values in them.")
   # Count the number of missing values for each column name and add them to a 
   # character vector which will keep the name of each such column. If the 
   broken_columns = names(which(colSums(is.na(data)) > 0))
@@ -28,8 +33,37 @@ determine_column_missing_values <- function(data) {
   }
 }
 
-create_males_females_table <- function(data) {
+create_sports_table <- function(data) {
+  # Create new data frame to hold the extracted information.
+  sport_data <- initialise_empty_table()
+  # Find all sports in the ais data frame.
+  unique_sports <- unique(data['sport'])
   
+  # For each sport, create a subset table containing all appearences.
+  for(i in 1:nrow(unique_sports)) {
+    sport_name <- unique_sports[i, "sport"]
+    sport_subset <- subset(data, sport == sport_name)
+    
+    # Count the number of females and males attending that sport.
+    females <- sum(sport_subset$sex=='f')
+    males <- sum(sport_subset$sex=='m')
+
+    # Add a new row to the sport table containing its name and the number of female and male players.
+    row <- list(toString(sport_name), females, males)
+    sport_data <- rbind(sport_data, row, stringsAsFactors=FALSE)
+  }
+  # Change the names of the columns of the new sport table.
+  colnames(sport_data) <- c("sport", "females", "males")
+  return(sport_data)
+}
+
+initialise_empty_table <- function() {
+  # Initialise an empty table to hold the sports table.
+  df <- data.frame(sport=character(),
+                  female=numeric(), 
+                  male=numeric(), 
+                  stringsAsFactors=FALSE) 
+  return(df)
 }
 
 find_imbalanced_sports <- functions(data) {
@@ -38,3 +72,4 @@ find_imbalanced_sports <- functions(data) {
 
 initialise_data()
 determine_column_missing_values(ais_data)
+create_sports_table(data = ais_data)
