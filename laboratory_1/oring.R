@@ -12,8 +12,8 @@ set_up_data_sets <- function() {
   library(faraway)
   
   # Create a new partial data frame which contains only some rows from the original orings.
-  orings_data <- data.frame(orings)
-  partial_orings_data <- orings_data[c(1, 2, 4, 11, 13, 18),]
+  orings_data <<- data.frame(orings)
+  partial_orings_data <<- orings_data[c(1, 2, 4, 11, 13, 18),]
 }
 
 plotting <- function(data_frame, data_message, plot_message, plot_title) {
