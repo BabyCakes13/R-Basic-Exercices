@@ -1,9 +1,9 @@
-"""
+"
 Let fn denote the nth Fibonacci number. (a) Construct a sequence of
 ratios of the form fn+1/fn, n = 1, 2, . . . , 30. Does the sequence appear to
 be converging? (b) Compute the golden ratio (1 + √5)/2. Is the 
 sequence converging to this ratio? (Optional) Can you mathematically prove this?
-"""
+"
 
 fibonacci <- function(n) {
   # Function which calculates the n-th term in the Fibonacci sequence.
@@ -36,6 +36,8 @@ fibonacci_rations <- function(start, end) {
     ratios <- append(ratios, result)
   }
   plot(ratios, type="l", col="orange", xlab="n", ylab="ratio", )
+  
+  print("We can see visually that the series is converging to the golden ratio when n increases, while at low n values, their ratio is oscilating around 1.618034.")
 }
 
 fibonacci_rations(2, 30)
