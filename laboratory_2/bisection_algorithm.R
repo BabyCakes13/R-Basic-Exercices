@@ -52,4 +52,11 @@ bisection <- function(f, a, b, n = 1000, tol = 1e-7) {
   print('Too many iterations')
 }
 
+# CONCLUSION
+# I believe that there will certanliy be a root between 0 and 2 because the functions f(0) and f(2) change their signs; if they change their signs,
+# that means that somewhere inbetween those values the function hits 0 on the axis for some value, which is the root. Therefore, if the function
+# for which we search the root is convergent, and its values have different signs for two given parameters (0 and 2 in this case), we know for sure that there
+# is a parameter for which the value of the function is 0, and therefore root (since the signs cannot be changed without reaching 0 on an axis). 
+# In this case, it took 25 iterations to find the root. We allowed maximu 1000.
+
 bisection(fancy_function, 0, 2)
