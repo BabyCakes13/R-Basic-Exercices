@@ -12,10 +12,10 @@ check_frequencies <- function() {
   
   cat("Frequencies for 1000 random integers, uniformly distributed, from 1 to 10 (USING SAMPLE):")
   print(frequencies_sample)
-  cat("Frequencies for 1000 random integers, uniformly distributed, from 1 to 10 (USING ROUND):")
+  cat("Frequencies for 1000 random integers, uniformly distributed, from 1 to 10 (USING ROUND(RUNIF)):")
   print(frequencies_round)
   
-  cat("In case of round, the frequencies of all numbers with exception of 1 and 10 are very close. For 1 and 10, there is approximately 50 or more difference rather than the rest.\n")
+  cat("In case of round(runif)), the frequencies of all numbers with exception of 1 and 10 are very close. For 1 and 10, there is approximately 50 or more difference rather than the rest.\n")
   cat("In case of sample, the frequencies of all numbers seem evenly distributed, and there is no big discrepancy between 1, 10 and the rest of the numbers.\n")
 }
 
