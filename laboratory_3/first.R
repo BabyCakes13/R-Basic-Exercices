@@ -46,7 +46,10 @@ compare_variances <- function(U1, U2) {
   }else{
     cat(" The estimate of Var[U1+U2] is smaller than Var[U1]+Var[U2].\n")
   }
-  
+}
+
+compare_probabilities <- function(U1, U2) {
+  # TODO
 }
 
 first_main <- function() {
@@ -54,6 +57,7 @@ first_main <- function() {
   U2 <- runif(10000, min=0, max=1);
   compare_means(U1, U2)
   compare_variances(U1, U2)
+  compare_probabilities(U1, U2)
 }
 
 first_main()
