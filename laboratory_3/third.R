@@ -21,8 +21,8 @@ X_functions <- function(X) {
   mean_X <- mean(X)
   variance_X <- var(X)
   
-  estimates <- list(mean=mean_X, variance=variance_X)
-  return(estimates)
+  functions <- list(mean=mean_X, variance=variance_X)
+  return(functions)
 }
 
 
