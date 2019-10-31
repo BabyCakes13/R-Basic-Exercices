@@ -19,4 +19,6 @@ check_frequencies <- function() {
   cat("In case of sample, the frequencies of all numbers seem evenly distributed, and there is no big discrepancy between 1, 10 and the rest of the numbers.\n")
 }
 
-check_frequencies()
+second_main <- function() {
+  check_frequencies()
+}
