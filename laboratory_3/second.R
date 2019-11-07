@@ -22,3 +22,5 @@ check_frequencies <- function() {
 second_main <- function() {
   check_frequencies()
 }
+
+second_main()
