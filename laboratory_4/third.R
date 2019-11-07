@@ -22,8 +22,7 @@ mean_median_mode<- function() {
 
 range_variance_std_IQR <- function() {
   # Function which calculates the range, variance, standard deviation, IQR for the given set.
-  setosa <- subset(iris,subset=Species=='setosa')
-  sepal_length <- setosa$Sepal.Length
+  sepal_length <- subset(iris,subset=Species=='setosa')$Sepal.Length
   
   range <- range(sepal_length)
   variance <- var(sepal_length)
@@ -37,17 +36,25 @@ range_variance_std_IQR <- function() {
 }
 
 kurtosis_skewness <- function() {
+  # Function which calculates the kurtosis and skewness of the Petal.Width, and determines if the system is mesokurtic and symmetric.
   library(moments)
   petal_width <- iris$Petal.Width
   
   kurtosis <- kurtosis(petal_width)
   skewness <- skewness(petal_width)
   
-  cat("\nThe range of the Sepal.Length is:", range, ".\n")
+  cat("\nThe kurtosis of the Petal.Width is:", kurtosis, ".\n")
+  cat("The skewness of the Petal.Width is:", skewness, ".\n")
+  cat("\nSince the kurtosis of Petal.Width is not 0, the system is not mesokurtic. Also, the system is not considered symmetric because the skewness is not 0,
+      as well as the mean, median and mode do not fall at the same point.")
 }
 
 third_main <- function() {
+  # Main caller of the third problem.
   summary(iris)
   mean_median_mode()
   range_variance_std_IQR()
+  kurtosis_skewness()
 }
+
+third_main()
