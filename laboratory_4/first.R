@@ -8,6 +8,8 @@ d) P(−1.2 < Z < 1.3).
 """
 
 simulate_snrv <- function(times) {
+  # Function which simulates *times* standard normal random realizations of the variable Z.
+  # It extracts the actual mean and variance for the set.
   simulated_snrv <- rnorm(times, 0, 1)
   mean_snrv <- mean(simulated_snrv)
   variance_snrv <- var(simulated_snrv)
@@ -16,15 +18,17 @@ simulate_snrv <- function(times) {
   return(snrv)
 }
 
-estimate_snrv_one_bound <- function(snrv, bound) {
-  actual <- pnorm(bound, snrv$mean, snrv$variance, lower.tail=FALSE)
-  theoretical <- pnorm(bound, 0, 1, lower.tail=FALSE)
+estimate_snrv_one_bound <- function(snrv, lower) {
+  # Function which estimates the lower bounded Z realizations, comparing the actual result to the theoretical one.
+  actual <- pnorm(lower, snrv$mean, snrv$variance, lower.tail=FALSE)
+  theoretical <- pnorm(lower, 0, 1, lower.tail=FALSE)
   
-  cat("\nThe actual value of the bounded standard normal random variable Z by", bound, "is", actual, ".\n")
-  cat("The theoretical value of the bounded standard normal random variable Z by", bound, "is", theoretical, ".\n")
+  cat("\nThe actual value of the bounded standard normal random variable Z by", lower, "is", actual, ".\n")
+  cat("The theoretical value of the bounded standard normal random variable Z by", lower, "is", theoretical, ".\n")
 }
 
 estimate_snrv_two_bounds <- function(snrv, lower, upper) {
+  # Function which estimates the lower and upper bounded Z realizations, comparing the actual result to the theoretical one.
   lower_actual <- pnorm(lower, snrv$mean, snrv$variance, lower.tail=FALSE)
   lower_theoretical <- pnorm(lower, 0, 1, lower.tail=FALSE)
   
@@ -39,6 +43,7 @@ estimate_snrv_two_bounds <- function(snrv, lower, upper) {
 }
 
 first_main <- function() {
+  # Main caller of the first problem.
   snrv <- simulate_snrv(1000)
   estimate_snrv_one_bound(snrv, 2.5)
   estimate_snrv_two_bounds(snrv, 0, 1.645)
