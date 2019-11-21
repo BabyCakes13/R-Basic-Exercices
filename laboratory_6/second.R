@@ -48,9 +48,14 @@ compare_results <- function(virginica_covariance, setosa_covariance, type) {
 second_main <- function() {
   # Main caller of the second exercice.
   iris_length <- build_length_sets()
-  iris_width <- build_width_sets()
   compare_results(iris_length$virginica, iris_length$setosa, "Petal.Length and Sepal.Length")
+}
+
+third_main <- function() {
+  # Main caller of the third exercice.
+  iris_width <- build_width_sets()
   compare_results(iris_width$virginica, iris_width$setosa, "Petal.Width and Sepal.Width")
 }
 
 second_main()
+third_main()
