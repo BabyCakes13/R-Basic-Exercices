@@ -13,8 +13,8 @@ two_variables <- function(data_frame) {
   # Function which determines the cross tabs for education and spontaneous variables of the infert dataframe.
   # It also adds the marginal frequencies to the crosstabs.
   cat("\nDeterminating cross tabs for education and spontaneous.\n")
-  crossed <-xtabs(~infert_dataframe$education + infert_dataframe$spontaneous)
-  CrossTable(infert_dataframe$education, infert_dataframe$spontaneous, prop.chisq = FALSE, prop.r = FALSE, prop.c = FALSE, prop.t = FALSE)
+  crossed <-xtabs(~data_frame$education + data_frame$spontaneous)
+  CrossTable(data_frame$education, data_frame$spontaneous, prop.chisq = FALSE, prop.r = FALSE, prop.c = FALSE, prop.t = FALSE)
   
   cat("\nAdding marginal frequencies to the crosstab.\n")
   addmargins(crossed)
